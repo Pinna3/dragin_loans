@@ -7,13 +7,13 @@ from helpers import csv_header, csv_rows_append
 
 def processLoanApplication(start_date, loan_type, loan_amount):
     """
-    Returns a loan payment schedule for student and auto loans.
+    Creates a loan payment schedule csv file for student and auto loans.
     Acceptable start_date format is '%Y-%m-%d'.
-    Loan type can either be Auto or Student.
+    Loan type can either be auto or student.
     Loan amount must be a positive number.
     """
 
-    # Generate datetime for timedelta calculations
+    # Instantiate datetime for timedelta transformations
     start_datetime = datetime.strptime(start_date, '%Y-%m-%d')
 
     # Set month count at 0, CSV row1 will be the 0th month
@@ -26,7 +26,7 @@ def processLoanApplication(start_date, loan_type, loan_amount):
     # imported from helpers.py
     csv_rows = []
 
-    # Logic for Auto Loans
+    # Logic for auto loans
     if loan_type.lower() == "auto":
 
         # Apply following logic until loan is paid in full
@@ -42,20 +42,20 @@ def processLoanApplication(start_date, loan_type, loan_amount):
             amt_paid_towards_princ = (.02 * loan_amount) * month_count  # noqa:E501
             remaining_bal = loan_amount - amt_paid_towards_princ
 
-            # Add month to month_count
+            # Add another month to month_count
             month_count += 1
 
             # Append csv row to list
             csv_rows_append(csv_rows, date, incremental_amt_paid, amt_paid_in_interest, amt_paid_towards_princ, remaining_bal)  # noqa:E501
 
-    # Logic for Student Loans
+    # Logic for student loans
     elif loan_type.lower() == "student":
 
         # Starting loan amount must be greater than $5000.00
         if not loan_amount < 5000.01:
 
-            # Initialize reporting values: total amt paid, total interest paid,
-            # and principle paid.
+            # Initialize reporting values: incremental_amt_paid,
+            # amt_paid_in_interest, and amt_paid_towards_princ.
             amt_paid_in_interest = 0
             amt_paid_towards_princ = 0
             incremental_amt_paid = 0
