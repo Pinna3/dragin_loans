@@ -22,7 +22,7 @@ def processLoanApplication(start_date, loan_type, loan_amount):
     # 0th month balance equals the starting loan amount
     remaining_bal = loan_amount
 
-    # CSV rows will be appended with row tuples according to the header schema
+    # csv_rows will be appended with row tuples according to the header schema
     # imported from helpers.py
     csv_rows = []
 
