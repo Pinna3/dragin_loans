@@ -1,3 +1,5 @@
+## Dragin Coding Challenge
+
 ### Build an application in Python that is run with a single function called processLoanApplication(start_date, loan_type, loan_amount)
 The function should output a CSV file with a payback schedule that shows each month’s payback in the following columns:
 1. DATE
